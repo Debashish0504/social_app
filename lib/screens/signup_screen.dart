@@ -82,6 +82,7 @@ class SignUpScreenState extends State<SignUpScreen>
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 12),
                                     child: TextFormField(
+                                      enabled: _animationStatus == 0 ? true : false,
                                       controller: _usernameController,
                                       validator: (value) {
                                         return Validator.validateText(
@@ -106,6 +107,7 @@ class SignUpScreenState extends State<SignUpScreen>
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 12),
                                     child: TextFormField(
+                                      enabled: _animationStatus == 0 ? true : false,
                                       controller: _emailController,
                                       validator: (value) {
                                         return Validator.validateEmail(
@@ -130,6 +132,7 @@ class SignUpScreenState extends State<SignUpScreen>
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 12),
                                     child: TextFormField(
+                                      enabled: _animationStatus == 0 ? true : false,
                                       controller: _passwordController,
                                       validator: (value) {
                                         return Validator.validatePassword(
@@ -154,6 +157,7 @@ class SignUpScreenState extends State<SignUpScreen>
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 12),
                                     child: TextFormField(
+                                      enabled: _animationStatus == 0 ? true : false,
                                       controller: _firstNameController,
                                       validator: (value) {
                                         return Validator.validateText(
@@ -178,6 +182,7 @@ class SignUpScreenState extends State<SignUpScreen>
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 12),
                                     child: TextFormField(
+                                      enabled: _animationStatus == 0 ? true : false,
                                       controller: _lastNameController,
                                       validator: (value) {
                                         return Validator.validateText(
@@ -260,7 +265,8 @@ class SignUpScreenState extends State<SignUpScreen>
   }
 
   Future<bool> _onWillPop() {
-    return showDialog(
+    return _animationStatus == 0 ?
+    showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
@@ -277,7 +283,7 @@ class SignUpScreenState extends State<SignUpScreen>
               ],
             );
           },
-        ) ??
+        ) : false ??
         false;
   }
 

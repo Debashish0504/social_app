@@ -84,6 +84,7 @@ class LoginScreenState extends State<LoginScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 12),
                                   child: TextFormField(
+                                    enabled: _animationStatus == 0 ? true : false,
                                     controller: _userNameController,
                                     validator: (value) {
                                       return Validator.validateText(
@@ -106,6 +107,7 @@ class LoginScreenState extends State<LoginScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 12),
                                   child: TextFormField(
+                                    enabled: _animationStatus == 0 ? true : false,
                                     obscureText: _showPassword,
                                     controller: _passwordController,
                                     validator: (value) {
@@ -134,7 +136,8 @@ class LoginScreenState extends State<LoginScreen>
                                     ),
                                   ),
                                 ),
-                                SignUp()
+                                 _animationStatus == 0 ? SignUp() : Container(),
+
                               ],
                             ),
                             _animationStatus == 0
@@ -177,7 +180,7 @@ class LoginScreenState extends State<LoginScreen>
 
   //region: Widget
   Future<bool> _onWillPop() {
-    return showDialog(
+    return _animationStatus == 0 ? showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
@@ -195,9 +198,11 @@ class LoginScreenState extends State<LoginScreen>
               ],
             );
           },
-        ) ??
+        ) : false ??
         false;
   }
+
+
 
   //endregion
 
